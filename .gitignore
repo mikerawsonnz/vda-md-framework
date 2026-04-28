@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Pandoc / LaTeX intermediate files (when generating PDF from Markdown)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*-blx.bib
+*.run.xml
+
+# Local previews
+preview/
+*.preview.pdf
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Claude Code local config (if used in this repo for editing the whitepaper)
+.claude/settings.local.json
+
+# Generated PDF — distributed via GitHub Releases, not committed
+whitepaper/*.pdf

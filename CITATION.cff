@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+title: "VDA-MD Framework: Value-Driven-AI Markdown Engine"
+message: "If you reference this framework, please cite it as below."
+type: software
+authors:
+  - family-names: "Rawson"
+    given-names: "Mike"
+    email: "mikerawsonnz@gmail.com"
+abstract: >-
+  The VDA-MD Framework establishes industry-specific customer journey and
+  global best-practice compliance standards as an automated baseline for AI
+  agent governance, and uses AI to govern only what makes each organisation
+  genuinely unique. Version 4.1 includes cryptographic agent identity via W3C
+  Verifiable Credentials (Ed25519Signature2020), A2A Protocol interoperability,
+  a self-governing Onboarding Agent, and a categorised Witness Agent audit
+  trail with 6-hour integrity checks. Compliance mapping covers EU AI Act
+  Articles 9-17, GDPR Articles 5/25/30, ISO 42001, NIST SP 800-53, and NIST
+  AI RMF.
+repository-code: "https://github.com/mikerawsonnz/vda-md-framework"
+url: "https://github.com/mikerawsonnz/vda-md-framework"
+keywords:
+  - "AI governance"
+  - "EU AI Act"
+  - "GDPR"
+  - "compliance"
+  - "verifiable credentials"
+  - "agent governance"
+  - "markdown"
+  - "NIST AI RMF"
+  - "ISO 42001"
+license: "CC-BY-4.0"
+version: "4.1.0"
+date-released: "2026-04-28"
