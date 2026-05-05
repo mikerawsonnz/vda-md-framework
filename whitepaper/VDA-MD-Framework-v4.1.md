@@ -67,7 +67,7 @@ Version 4.0 adds four major capability layers that significantly strengthen the 
 - **Self-Governing Agent Onboarding** — A 9th agent governs its own framework's growth. New agents are admitted through a 7-phase workflow including impact delta analysis, dual human approval gates, and an adversarial governance sandbox evaluation. The framework governs itself using the same rules it applies to everything else.
 - **Witness Agent Governance Expansion** — The audit trail now categorises every event by governance domain, a 6-hour integrity check scheduler runs automatically, and a Framework Integrity Panel surfaces live compliance metrics to platform operators.
 
-The framework has been validated as a functioning proof-of-concept platform — VDA-MD (Value Driven AI Management Kit) — built on top of the Apaleo Property Management System and tested against Apaleo's sandbox environment across five citizenM hotel properties. Hospitality is the proof-of-concept vertical. The framework is designed for any industry with a defined customer journey.
+The framework has been validated as a functioning proof-of-concept platform — VDA-MD (Value Driven AI Management Kit) — built on top of the PMS Property Management System and tested against PMS's sandbox environment across five citizenM hotel properties. Hospitality is the proof-of-concept vertical. The framework is designed for any industry with a defined customer journey.
 
 The validation produced two architectural findings not anticipated in the original design: a Compliance Guard that enforces governance file integrity deterministically at the application layer, and a §2.1 Enforcement Rule that prevents any agent from operating outside its governance envelope before AI is ever called. These findings, confirmed in v4.0 across all capability layers, establish that governance file integrity and governance envelope enforcement can be achieved deterministically in the standalone tier without enterprise OPA infrastructure.
 
@@ -574,9 +574,9 @@ The upgrade path from standalone to enterprise is non-destructive. An organisati
 
 ### 14.1 Scope and Status
 
-The core proof-of-concept has been executed as a functioning proof-of-concept platform — VDA-MD (Value Driven AI Management Kit) — built on top of the Apaleo Property Management System and validated against Apaleo's sandbox environment. The platform is not a simulation: every agent call hits Apaleo's real MCP endpoint, and every Witness Agent entry contains real Apaleo reservation IDs, folio IDs, and rate plan IDs that can be independently verified in the Apaleo sandbox portal.
+The core proof-of-concept has been executed as a functioning proof-of-concept platform — VDA-MD (Value Driven AI Management Kit) — built on top of the PMS Property Management System and validated against PMS's sandbox environment. The platform is not a simulation: every agent call hits PMS's real MCP endpoint, and every Witness Agent entry contains real PMS reservation IDs, folio IDs, and rate plan IDs that can be independently verified in the PMS sandbox portal.
 
-Five citizenM hotel properties are configured as fully independent governance domains — Berlin, London, Munich, Paris, and Vienna — each running nine AI agents governed by a canonical stack of 29 Markdown governance files. The choice of Apaleo as the underlying system of record is deliberate: governing AI agents against a production-grade hospitality PMS rather than a synthetic test environment validates that the framework operates under real operational constraints.
+Five citizenM hotel properties are configured as fully independent governance domains — Berlin, London, Munich, Paris, and Vienna — each running nine AI agents governed by a canonical stack of 29 Markdown governance files. The choice of PMS as the underlying system of record is deliberate: governing AI agents against a production-grade hospitality PMS rather than a synthetic test environment validates that the framework operates under real operational constraints.
 
 A live demonstration of the framework is available — see **Appendix C: Live Platform Demonstration** for access details.
 
@@ -594,17 +594,17 @@ Hospitality is the proof-of-concept vertical. The framework's architecture — t
 | Folio Agent | Stay / Finance | GetFolio, ListFolios | Reads and validates folio state, flags anomalies |
 | Checkout Agent | Post-Stay / Operations | CheckOut, ListFolios | Departure processing with loyalty exception evaluation |
 | Revenue Reconciliation | Post-Stay / Finance | GetReport, ListFolios | ≤5% variance = autonomous PASS; flags larger discrepancies |
-| Onboarding Agent | A2A / Platform | No Apaleo tools | Governs external agent admission via 7-phase workflow |
+| Onboarding Agent | A2A / Platform | No PMS tools | Governs external agent admission via 7-phase workflow |
 
 ### 14.3 The 7-Step Live Scenario
 
-The centrepiece interactive demo runs a complete guest journey through all operational agents in sequence against live Apaleo data. Before any scenario runs, the platform sets 60 days of nightly rates on the demo rate plan via the Rates PUT endpoint, creates a fresh Confirmed booking 7 days in the future, and resolves the folio automatically. All agents operate against this guaranteed live Apaleo data — no mocked responses anywhere in the pipeline.
+The centrepiece interactive demo runs a complete guest journey through all operational agents in sequence against live PMS data. Before any scenario runs, the platform sets 60 days of nightly rates on the demo rate plan via the Rates PUT endpoint, creates a fresh Confirmed booking 7 days in the future, and resolves the folio automatically. All agents operate against this guaranteed live PMS data — no mocked responses anywhere in the pipeline.
 
-| Step | Agent | Apaleo Tool | Decision Logic |
+| Step | Agent | PMS Tool | Decision Logic |
 |---|---|---|---|
 | 1 | Availability Agent | GetAvailableUnitGroups | Confirms real unit count against live inventory |
 | 2 | Rate Agent | ListRatePlans | Approves 5% discount autonomously (BAR €180 → €171, under 9% ceiling) |
-| 3 | Reservation Bot | GetGuestProfile | Verifies demo reservation exists in Apaleo live environment |
+| 3 | Reservation Bot | GetGuestProfile | Verifies demo reservation exists in PMS live environment |
 | 4 | Check-In Agent | CheckIn (MCP) | Transitions reservation from Confirmed to InHouse |
 | 5 | Folio Charge Agent | CreateFolioCharge (MCP) | Posts €89 RoomRevenue charge to real folio |
 | 6 | Checkout Agent | CheckOut (MCP) | Applies Gold loyalty exception: 13:00, €30 fee waived, `exceptionApplied: true` |
@@ -786,19 +786,19 @@ Repository: https://github.com/mikerawsonnz/vda-md-framework
 
 A functioning proof-of-concept platform implementing the full VDA-MD v4.0 / v4.1 architecture is available for demonstration.
 
-**Live demo URL:** `https://value-driven-ai-md-apaleo.replit.app`
+**Live demo URL:** Contact mike@getvda.ai for a live demo of VDA-MD working on top of a system of record (Hospitality).
 
 **What the demo shows:**
 
-- Five citizenM hotel properties (Berlin, London, Munich, Paris, Vienna) configured as fully independent governance domains.
-- Nine governed AI agents operating against the live Apaleo Property Management System sandbox. Every agent call hits Apaleo's real MCP endpoint; no simulated responses.
+- Five TEST hotel properties (Berlin, London, Munich, Paris, Vienna) configured as fully independent governance domains.
+- Nine governed AI agents operating against the live PMS Property Management System sandbox. Every agent call hits a real MCP endpoint; no simulated responses.
 - Complete governance file library per hotel: AGENTS.md, SOP.md, SKILL.md, EXCEPTION.md across the customer journey (Pre-Book, Book, Stay, Post-Stay) and Shared Services axis (Finance, HR, Legal).
 - Live W3C Verifiable Credential issuance and rotation, with Ed25519Signature2020 signing and governance hash binding visible in the credentials dashboard.
 - A2A Protocol endpoint with real-time Agent Card discovery and the 7-phase Onboarding Agent workflow exercisable through the dashboard.
 - Witness Agent audit trail with event categorisation and the Framework Integrity Panel surfacing live compliance metrics.
-- The centrepiece 7-step guest journey scenario demonstrating the complete governance loop against live Apaleo data.
+- The centrepiece 7-step guest journey scenario demonstrating the complete governance loop against live PMS data.
 
-**Verification:** Apaleo reservation IDs, folio IDs, and rate plan IDs recorded in the Witness Agent entries can be independently verified in the Apaleo sandbox portal.
+**Verification:** PMS reservation IDs, folio IDs, and rate plan IDs recorded in the Witness Agent entries can be independently verified in the PMS sandbox portal.
 
 **Repository:** https://github.com/mikerawsonnz/vda-md-framework
 
